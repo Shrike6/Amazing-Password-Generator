@@ -9,7 +9,7 @@ function generatePassword() {
   var num = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
   var sym = ['!', '@', '#', '$','%', '^', '&', '*', '?', '.', '/', ',', '`', '-', '_', '+', '=']
   var passArray = []; // Password Array to be populated by criteria
-  var randomPass = '';
+  var randomPass = ''; // Password String that will be returned
 
   //Prompts
   var passLength = prompt("How many characters would you like the password to be?", "password must be between 8 and 128 characters");
@@ -38,7 +38,7 @@ function generatePassword() {
   console.log(special);
 
   
-
+// Adds chosen criteria to password Array
   if (lower) {
     passArray = passArray.concat(chars);
     console.log(passArray);
