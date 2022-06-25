@@ -1,46 +1,74 @@
-// Assignment Code
+
 var generateBtn = document.querySelector("#generate");
 
 function generatePassword() {
   console.log("Button has been clicked");
+  // Variables being defined
   var chars = ["a", 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-  var upperChars = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
-  var num = "0123456789";
-  // var sym = !@#$%^&*?.
-//create widow prompts to generate password.
-// add criteria for user to choose password:
-//    8-128 ch, confirm numeric, special, uppercase, and lowercase letters
-//    validate input.
-// generate password with chosen criteria
+  var upperChars = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+  var num = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+  var sym = ['!', '@', '#', '$','%', '^', '&', '*', '?', '.', '/', ',', '`', '-', '_', '+', '=']
+  var passArray = []; // Password Array to be populated by criteria
+  var randomPass = '';
 
-var passLength = prompt("How many characters would you like the password to be?", "password must be between 8 and 128 characters");
-console.log(passLength)
-if (passLength >= 8 && passLength <= 128) {
-  var upperCase = confirm("Would you like uppercase characters in your password?");
-  console.log(upperCase);
-    if (upperCase === true || upperCase === false) {
-      var num = confirm("Would you like numbers in your password?");
-      console.log(num);
-    }
-    if (num === true || num === false) {
-      var symb = confirm("Would you like special characters in your password?");
-      console.log(symb);
-    }
-}
-else {
-  return "password must be between 8 and 128 characters";
-}
+  //Prompts
+  var passLength = prompt("How many characters would you like the password to be?", "password must be between 8 and 128 characters");
+  console.log(passLength)
+  if (passLength < 8 || passLength > 128) {
 
+    return "Password must be between 8 and 128 characters"
 
+  }
+  else if (isNaN(parseInt(passLength))) {
 
-// var upper = prompt("Would you like uppercase characters in your password?");
-// var num = prompt("Would you like numbers in your password?");
-// var special = prompt("Would you like special characters in your password?");
+    return "Password must be between 8 and 128 characters"
+
+  }
+
+  var lower = confirm("Would you like uppercase characters in your password?");
+  console.log(lower);
+
+  var upper = confirm("Would you like uppercase characters in your password?");
+  console.log(upper);
+
+  var numChars = confirm("Would you like numbers in your password?");
+  console.log(numChars);
+
+  var special = confirm("Would you like special characters in your password?");
+  console.log(special);
+
   
+
+  if (lower) {
+    passArray = passArray.concat(chars);
+    console.log(passArray);
+  }
+
+  if (upper) {
+    passArray = passArray.concat(upperChars);
+    console.log(passArray);
+  }
+
+  if (numChars) {
+    passArray = passArray.concat(num);
+    console.log(passArray);
+  }
+
+  if (special) {
+    passArray = passArray.concat(sym);
+    console.log(passArray);
+  }
+
+  //Password generator
+  
+  for (var i = 0; i < passLength; i++) {
+    //generate randomPass a random string from passArray
+    randomPass += passArray[Math.floor(Math.random() * passArray.length)];
+  }
+  
+    
+    return randomPass;
 }
-
-  // return "generated password here";
-
 
 // Write password to the #password input
 function writePassword() {
